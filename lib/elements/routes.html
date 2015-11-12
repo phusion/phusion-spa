@@ -29,10 +29,15 @@
 
       registerRoutes: function() {
         var routes = this;
-        var children = Polymer.dom(this).children;
+
+        var children = Polymer.dom(routes).children;
+
+
         children.forEach(function(child) {
           if (child.route != null && child.route != undefined) {
             routes.registerView(child);
+          } else {
+            // TODO
           }
         });
       },
