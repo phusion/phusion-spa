@@ -15,8 +15,12 @@
       is: "spa-routes",
 
       ready: function() {
+        var routes = this;
         this.initializeRouter();
-        this.registerRoutes();
+
+        window.addEventListener('WebComponentsReady', function(e) {
+          routes.registerRoutes();
+        });
       },
 
       initializeRouter: function() {
@@ -31,7 +35,6 @@
         var routes = this;
 
         var children = Polymer.dom(routes).children;
-
 
         children.forEach(function(child) {
           if (child.route != null && child.route != undefined) {
