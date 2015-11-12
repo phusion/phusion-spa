@@ -1,0 +1,28 @@
+<link rel="import" href="../behaviors/viewable.html">
+
+<dom-module id="spa-view">
+  <template>
+    <style>
+      /* CSS rules for your element */
+    </style>
+  
+    <!-- local DOM for your element -->
+  </template>
+
+  <script>
+    // element registration
+    Polymer({
+      is: "spa-view",
+
+      ready: function() {
+      },
+
+      // add properties and methods on the element's prototype
+      properties: {
+      },
+
+      behaviors: [PhusionSpa.Viewable]
+    });
+  </script>
+
+</dom-module>

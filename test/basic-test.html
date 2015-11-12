@@ -1,0 +1,62 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../lib/phusion-spa.html">
+  </head>
+  <body>
+
+    <!-- You can use the document as a place to set up your fixtures. -->
+    <script>
+      MockRouter = function() {
+        return {
+          routes: [],
+          on: function(view, callback) {
+            this.routes.push([view, callback]);
+          }
+        };
+      };
+    </script>
+
+    <spa-routes router-class="MockRouter">
+      <spa-view route="first_route"></spa-view>
+    </spa-routes>
+
+    <script>
+      var myEl = document.querySelector('spa-routes');
+
+      describe('<spa-routes>', function() {
+
+        it('has a router', function() {
+          assert.isObject(myEl.router);
+          expect(myEl.router).to.respondTo('on');
+          expect(myEl.router).to.have.property('routes');
+        });
+
+        it('registers children with the route property', function() {
+          var first_route = myEl.router.routes[0];
+          expect(first_route).to.exist;
+          expect(first_route[0]).to.eq('first_route');
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

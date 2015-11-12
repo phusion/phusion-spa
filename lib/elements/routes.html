@@ -1,0 +1,61 @@
+<script src="../../../brow-route/dist/brow-route.js"></script>
+<dom-module id="spa-routes">
+
+  <template>
+    <style>
+      /* CSS rules for your element */
+    </style>
+  
+    <!-- local DOM for your element -->
+  </template>
+
+  <script>
+    // element registration
+    Polymer({
+      is: "spa-routes",
+
+      ready: function() {
+        this.initializeRouter();
+        this.registerRoutes();
+      },
+
+      initializeRouter: function() {
+        if (this.routerClass != null) {
+          this.router = new (eval(this.routerClass))(true);
+        } else {
+          this.router = new BrowRoute.Router(true);
+        }
+      },
+
+      registerRoutes: function() {
+        var routes = this;
+        var children = Polymer.dom(this).children;
+        children.forEach(function(child) {
+          if (child.route != null && child.route != undefined) {
+            routes.registerView(child);
+          }
+        });
+      },
+
+      registerView: function(view) {
+        var routes = this;
+        this.router.on(view.route, function() {
+          // TODO
+        });
+      },
+
+      properties: {
+        // declare properties for the element's public API
+        router: {
+          type: Object,
+          value: null
+        },
+        routerClass: {
+          type: String,
+          value: null
+        }
+      }
+    });
+  </script>
+
+</dom-module>
