@@ -1,0 +1,21 @@
+<script>
+  exports = window.PhusionSpa = window.PhusionSpa || {};
+
+  exports.Routable = {
+      properties: {
+        route: {
+          type: String,
+          value: null
+        }
+      },
+      
+      listeners: {
+      },
+      
+      created: function() {
+      },
+      visit: function() {
+        throw("Visit of routable element should be overridden but wasn't.")
+      }
+    };
+</script>

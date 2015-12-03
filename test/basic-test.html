@@ -25,6 +25,7 @@
 
     <spa-routes router-class="MockRouter">
       <spa-view route="first_route"></spa-view>
+      <spa-view route="second_route"></spa-view>
     </spa-routes>
 
     <script>
@@ -45,6 +46,12 @@
           expect(first_route[0]).to.eq('first_route');
         });
 
+        it('registers two children with the route property', function() {
+          var second_route = routes.router.routes[1];
+          expect(second_route).to.exist;
+          expect(second_route[0]).to.eq('second_route');
+        });
+
       });
 
       describe('<spa-view>', function() {
@@ -52,7 +59,11 @@
           assert.isObject(view1);
           expect(view1).to.have.property('route');
           expect(view1.route).to.eq('first_route');
-        })
+        });
+
+        it('has a visit function', function() {
+          expect(view1).to.respondTo('visit');
+        });
       });
     </script>
 

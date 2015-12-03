@@ -1,18 +1,19 @@
-<script>
-  exports = window.PhusionSpa = window.PhusionSpa || {};
+<link rel="import" href="routable.html">
 
-  exports.Viewable = {
-      properties: {
-        route: {
-          type: String,
-          value: null
-        }
-      },
-      
-      listeners: {
-      },
-      
-      created: function() {
-      }
-    };
+<script>
+exports = window.PhusionSpa = window.PhusionSpa || {};
+
+ViewableImp = {
+  properties: {
+  },
+
+  listeners: {
+  },
+  created: function() {
+  },
+  visit: function() {
+  }
+};
+
+exports.Viewable =  [PhusionSpa.Routable, ViewableImp]
 </script>
