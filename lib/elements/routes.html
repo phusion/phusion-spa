@@ -52,8 +52,19 @@
         });
       },
 
-      visitView: function(view, params, options) {
-        view.visit(params);
+      visitView: function(newView, params, options) {
+        newRoute = window.location.hash;
+
+        previousView = this.currentView;
+        this.currentView = newView;
+
+        this.currentRoute = newRoute;
+
+        newView.visit(params);
+
+        if (previousView != null) {
+          previousView.leave(params, newView);
+        }
       },
 
       properties: {
@@ -65,7 +76,11 @@
         routerClass: {
           type: String,
           value: null
-        }
+        },
+        currentRoute: String,
+        previousRoute: String,
+        currentView: Element,
+        previousView: Element
       }
     });
   </script>

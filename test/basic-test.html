@@ -19,10 +19,10 @@
           on: function(view, callback) {
             this.routes.push([view, callback]);
           },
-          trigger: function(route, params) {
+          trigger: function(route, params, options) {
             this.routes.forEach(function(route_tuple) {
               if (route_tuple[0] == route) {
-                route_tuple[1](params);
+                route_tuple[1](params, options);
               }
             });
           }
@@ -63,6 +63,12 @@
         it('switches between views on routes', function() {
           expect(view1.classList.contains("active")).to.be.false;
           expect(view2.classList.contains("active")).to.be.false;
+          routes.router.trigger('first_route',{});
+          expect(view1.classList.contains("active")).to.be.true;
+          expect(view2.classList.contains("active")).to.be.false;
+          routes.router.trigger('second_route',{});
+          expect(view1.classList.contains("active")).to.be.false;
+          expect(view2.classList.contains("active")).to.be.true;
           routes.router.trigger('first_route',{});
           expect(view1.classList.contains("active")).to.be.true;
           expect(view2.classList.contains("active")).to.be.false;
