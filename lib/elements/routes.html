@@ -59,14 +59,20 @@
           return;
         }
 
+        this.params = object_merge(params, options);
+
         previousView = this.currentView;
         this.currentView = newView;
 
+        if (previousView != null && !previousView.noRouteHistory) {
+          this.previousRoute = this.currentRoute
+        }
+
         this.currentRoute = newRoute;
 
-        newView.visit(params);
+        newView.visit(this.params);
 
-        if (previousView != null) {
+        if (previousView != null && previousView != this.currentView) {
           previousView.leave(params, newView);
         }
       },
@@ -87,6 +93,15 @@
         previousView: Element
       }
     });
+
+  object_merge = function(object, properties) {
+    var key, val;
+    for (key in properties) {
+      val = properties[key];
+      object[key] = val;
+    }
+    return object;
+  };
   </script>
 
 </dom-module>

@@ -34,6 +34,7 @@
     <spa-routes router-class="MockRouter">
       <spa-view route="first_route"></spa-view>
       <spa-view route="second_route"></spa-view>
+      <spa-view route="third_route" no-route-history></spa-view>
     </spa-routes>
 
     <script>
@@ -85,6 +86,25 @@
           expect(spy.calledOnce).to.be.true;
 
           view1.visit.restore();
+        });
+
+        it('merges the options into the params hash', function() {
+          var spy = sinon.spy(view1, "visit");
+          routes.currentRoute = '';
+          routes.router.trigger('first_route',{ a: "bla"}, {b: "blu"});
+          expect(spy.calledOnce).to.be.true;
+          var arguments = spy.firstCall.args;
+          expect(arguments).to.deep.eq([{a: "bla", b: "blu"}]);
+
+          view1.visit.restore();
+        });
+
+        it('stores the route as the previous route unless it opts out', function() {
+          routes.router.trigger('first_route',{});
+          routes.router.trigger('third_route',{});
+          expect(routes.previousRoute).to.eq('first_route');
+          routes.router.trigger('first_route',{});
+          expect(routes.previousRoute).to.not.eq('third_route');
         });
       });
 
