@@ -18,6 +18,13 @@
           routes: [],
           on: function(view, callback) {
             this.routes.push([view, callback]);
+          },
+          trigger: function(route, params) {
+            this.routes.forEach(function(route_tuple) {
+              if (route_tuple[0] == route) {
+                route_tuple[1](params);
+              }
+            });
           }
         };
       };
@@ -30,7 +37,8 @@
 
     <script>
       var routes = document.querySelector('spa-routes');
-      var view1 = document.querySelector('spa-view');
+      var view1 = document.querySelectorAll('spa-view')[0];
+      var view2 = document.querySelectorAll('spa-view')[1];
 
       describe('<spa-routes>', function() {
 
@@ -52,6 +60,13 @@
           expect(second_route[0]).to.eq('second_route');
         });
 
+        it('switches between views on routes', function() {
+          expect(view1.classList.contains("active")).to.be.false;
+          expect(view2.classList.contains("active")).to.be.false;
+          routes.router.trigger('first_route',{});
+          expect(view1.classList.contains("active")).to.be.true;
+          expect(view2.classList.contains("active")).to.be.false;
+        });
       });
 
       describe('<spa-view>', function() {
@@ -63,6 +78,20 @@
 
         it('has a visit function', function() {
           expect(view1).to.respondTo('visit');
+        });
+
+        it('visit switches active state', function() {
+          view1.visit();
+          expect(view1.classList.contains("active")).to.be.true;
+          view2.visit();
+          expect(view2.classList.contains("active")).to.be.true;
+        });
+
+        it('leave switches active state', function() {
+          view1.visit();
+          expect(view1.classList.contains("active")).to.be.true;
+          view1.leave();
+          expect(view1.classList.contains("active")).to.be.false;
         });
       });
     </script>

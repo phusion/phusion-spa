@@ -3,17 +3,43 @@
 <script>
 exports = window.PhusionSpa = window.PhusionSpa || {};
 
-ViewableImp = {
+ViewableImpl = {
   properties: {
   },
 
   listeners: {
   },
+
   created: function() {
   },
-  visit: function() {
+
+  visit: function(params) {
+    window.scrollTo(0,0);
+    var self = this;
+    self.load(params, function() { self.show(); });
+  },
+  leave: function(params, newView) {
+    this.hide(newView);
+    this.unload(params);
+  },
+  load: function(params, show) {
+    show();
+  },
+  hide: function(newView) {
+    
+  },
+  unload: function(params) {
+    // Override this for unload behavior
+  },
+  show: function() {
+    //this.visible = true;
+    this.classList.add('active');
+  },
+  hide: function() {
+    //this.visible = false;
+    this.classList.remove('active');
   }
 };
 
-exports.Viewable =  [PhusionSpa.Routable, ViewableImp]
+exports.Viewable =  [PhusionSpa.Routable, ViewableImpl]
 </script>

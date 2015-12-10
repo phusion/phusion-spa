@@ -47,9 +47,13 @@
 
       registerView: function(view) {
         var routes = this;
-        this.router.on(view.route, function() {
-          // TODO
+        this.router.on(view.route, function(params, options) {
+          routes.visitView(view, params, options);
         });
+      },
+
+      visitView: function(view, params, options) {
+        view.visit(params);
       },
 
       properties: {
