@@ -20,6 +20,7 @@
             this.routes.push([view, callback]);
           },
           trigger: function(route, params, options) {
+            this.path = route;
             this.routes.forEach(function(route_tuple) {
               if (route_tuple[0] == route) {
                 route_tuple[1](params, options);
@@ -72,6 +73,18 @@
           routes.router.trigger('first_route',{});
           expect(view1.classList.contains("active")).to.be.true;
           expect(view2.classList.contains("active")).to.be.false;
+        });
+
+        it('called only once when routed to same route', function() {
+          var spy = sinon.spy(view1, "visit");
+          routes.currentRoute = '';
+          routes.router.trigger('first_route',{});
+          expect(routes.router.path).to.eq('first_route');
+          expect(routes.currentRoute).to.eq('first_route');
+          routes.router.trigger('first_route',{});
+          expect(spy.calledOnce).to.be.true;
+
+          view1.visit.restore();
         });
       });
 

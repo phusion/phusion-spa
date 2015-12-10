@@ -2,21 +2,27 @@
   "name": "phusion-spa",
   "description": "A Single Page App view switching system for Polymer",
   "authors": [
-    { "name": "Tinco Andringa", "email": "<tinco@phusion.nl>" },
-    { "name": "Goffert van Gool", "email": "<goffert@phusion.nl>" }
+    {
+      "name": "Tinco Andringa",
+      "email": "<tinco@phusion.nl>"
+    },
+    {
+      "name": "Goffert van Gool",
+      "email": "<goffert@phusion.nl>"
+    }
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/phusion/phusion-spa"
   },
-  "main" : "dist/polymer-spa.html",
-  "ignore" : [
+  "main": "dist/polymer-spa.html",
+  "ignore": [
     "/*",
     "!/dist"
   ],
   "dependencies": {
-    "brow-route": "~0.0.7",
+    "brow-route": "~0.0.8",
     "polymer": "Polymer/polymer#^1.2.0"
   },
   "devDependencies": {
