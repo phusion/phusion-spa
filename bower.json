@@ -22,7 +22,7 @@
     "!/dist"
   ],
   "dependencies": {
-    "brow-route": "~0.0.8",
+    "brow-route": "~1.0.0",
     "polymer": "Polymer/polymer#^1.2.0"
   },
   "devDependencies": {

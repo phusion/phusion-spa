@@ -77,6 +77,15 @@
         }
       },
 
+      goTo: function(path) {
+        this.router.goTo(path);
+      },
+
+      // TODO currently goBack can only go back one time (doing it repeatedly loops between last two)
+      goBack: function() {
+        this.goTo(this.previousRoute);
+      },
+
       properties: {
         // declare properties for the element's public API
         router: {
