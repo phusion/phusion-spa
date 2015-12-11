@@ -3,7 +3,12 @@
 <dom-module id="spa-view">
   <template>
     <style>
-      /* CSS rules for your element */
+      :host {
+        display: none;
+      }
+      :host.active {
+        display: block;
+      }
     </style>
   
     <content></content>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/bower_components/polymer/polymer.html">
+    <link rel="import" href="/lib/phusion-spa.html">
+  </head>
+  <body>
+    <h1>Basic view test</h1>
+    <a href="#first_route">First page</a>
+    <a href="#second_route">Second page</a>
+
+    <spa-routes>
+      <spa-view route="first_route">
+        <h2>Page one</h2>
+      </spa-view>
+      <spa-view route="second_route">
+        <h2>Page two</h2>
+      </spa-view>
+    </spa-routes>
+  </body>
+ </html>
