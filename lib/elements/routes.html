@@ -1,4 +1,4 @@
-<script src="../../../brow-route/dist/brow-route.js"></script>
+<script src="/bower_components/brow-route/dist/brow-route.js"></script>
 <dom-module id="spa-routes">
 
   <template>
@@ -20,6 +20,7 @@
 
         window.addEventListener('WebComponentsReady', function(e) {
           routes.registerRoutes();
+          routes.router.start();
         });
       },
 

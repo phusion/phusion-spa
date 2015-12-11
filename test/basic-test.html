@@ -16,6 +16,7 @@
       MockRouter = function() {
         return {
           routes: [],
+          started: false,
           on: function(view, callback) {
             this.routes.push([view, callback]);
           },
@@ -29,6 +30,9 @@
           },
           goTo: function(path) {
             this.trigger(path, {}, {});
+          },
+          start: function() {
+            this.started = true;
           }
         };
       };
@@ -57,6 +61,10 @@
           var first_route = routes.router.routes[0];
           expect(first_route).to.exist;
           expect(first_route[0]).to.eq('first_route');
+        });
+
+        it('starts the router', function() {
+          expect(routes.router.started).to.be.true;
         });
 
         it('registers two children with the route property', function() {
