@@ -20,7 +20,7 @@
 
         window.addEventListener('WebComponentsReady', function(e) {
           routes.registerRoutes();
-          routes.router.start();
+          routes.router.start(true);
         });
       },
 
@@ -96,6 +96,10 @@
         routerClass: {
           type: String,
           value: null
+        },
+        home: {
+          type: String,
+          value: ''
         },
         currentRoute: String,
         previousRoute: String,

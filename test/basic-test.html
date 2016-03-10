@@ -38,16 +38,16 @@
       };
     </script>
 
-    <spa-routes router-class="MockRouter">
-      <spa-view route="first_route"></spa-view>
-      <spa-view route="second_route"></spa-view>
-      <spa-view route="third_route" no-route-history></spa-view>
+    <spa-routes id="routes" router-class="MockRouter">
+      <spa-view id="view1" route="first_route"></spa-view>
+      <spa-view id="view2" route="second_route"></spa-view>
+      <spa-view id="view3" route="third_route" no-route-history></spa-view>
     </spa-routes>
 
     <script>
-      var routes = document.querySelector('spa-routes');
-      var view1 = document.querySelectorAll('spa-view')[0];
-      var view2 = document.querySelectorAll('spa-view')[1];
+      var routes = document.getElementById('routes');
+      var view1 = document.getElementById('view1');
+      var view2 = document.getElementById('view2');
 
       describe('<spa-routes>', function() {
 
@@ -138,7 +138,6 @@
 
       describe('<spa-view>', function() {
         it('has a route property', function() {
-          assert.isObject(view1);
           expect(view1).to.have.property('route');
           expect(view1.route).to.eq('first_route');
         });
